@@ -30,19 +30,56 @@
 
   end
 
-c1 = Guardar.new
-puts c1.buildHash
+guardar = Guardar.new
+puts guardar.buildHash
 
 
 class Juego
   
+  def initialize(guardar)
+    @guardar = guardar
+  end
+
   def jugar
     puts "-----------"
+    @hash = @guardar.buildHash
+
+    i = 0
+    while (i < 4)
+      
+        puts @hash.keys[i]
+        respuesta = gets.chomp
+
+        if respuesta == @hash.values[i] then
+          puts "Correcto !!"
+          puts
+          i = i
+        else
+          puts "Incorrecto !!"
+          puts
+          i = i - 1
+        end
     
-    
+    i += 1
+    end
+
+
+    # i = 0   
+    # while (i != 2)
+    #   for i in 0..@hash.length-1
+    #     puts @hash.keys[i]
+    #     respuesta = gets.chomp
+
+    #     puts respuesta == @hash.values[i]
+    #   end
+    #   i += 1
+    # end
+
+
+
   end
 end
 
-c2 = Juego.new
+c2 = Juego.new(guardar)
 puts c2.jugar
 
