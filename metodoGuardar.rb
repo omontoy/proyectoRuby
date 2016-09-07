@@ -44,10 +44,12 @@ class Juego
     puts "-----------"
     @hash = @guardar.buildHash
 
+    hashLen = @hash.length
     i = 0
-    while (i < 4)
+    while (i < hashLen )
       
         puts @hash.keys[i]
+        print "=> "
         respuesta = gets.chomp
 
         if respuesta == @hash.values[i] then
