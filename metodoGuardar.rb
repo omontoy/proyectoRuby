@@ -1,4 +1,4 @@
-  class Guardar
+  class GuardarPreguntas
     
     def buildHash
       File.open("questions.txt", 'r') do |f1|
@@ -20,18 +20,15 @@
 
         end #while
         unHash
-        # puts unHash.keys
-        # puts
-        # puts unHash.values
-
+        
       end  #File.open
 
     end #def
 
   end
 
-guardar = Guardar.new
-puts guardar.buildHash
+guardar = GuardarPreguntas.new
+#puts guardar.buildHash
 
 
 class Juego
@@ -41,47 +38,42 @@ class Juego
   end
 
   def jugar
-    puts "-----------"
+    
     @hash = @guardar.buildHash
 
+    puts "-------------------------------------------------------------
+    Bienvenido a reto 5, Para jugar, solo ingresa la respuesta 
+    correcta para cada una de las preguntas, Listo ? Vamos!"
+
+    puts "-------------------------------------------------------------
+    Presiona enter para comenzar"
+
+    comenzar = gets
     hashLen = @hash.length
     i = 0
     while (i < hashLen )
       
         puts @hash.keys[i]
-        print "=> "
+        print "--> "
         respuesta = gets.chomp
 
         if respuesta == @hash.values[i] then
           puts "Correcto !!"
           puts
-          i = i
+          i += 1
         else
           puts "Incorrecto !!"
           puts
-          i = i - 1
         end
-    
-    i += 1
+
+        if i == hashLen then
+          puts "Has ganado !! 
+          El juego ha terminado !!"
+        end
     end
-
-
-    # i = 0   
-    # while (i != 2)
-    #   for i in 0..@hash.length-1
-    #     puts @hash.keys[i]
-    #     respuesta = gets.chomp
-
-    #     puts respuesta == @hash.values[i]
-    #   end
-    #   i += 1
-    # end
-
-
-
   end
 end
 
-c2 = Juego.new(guardar)
-puts c2.jugar
+juego = Juego.new(guardar)
+puts juego.jugar
 
