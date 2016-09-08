@@ -7,28 +7,25 @@
         while linea = f1.gets
           
           if linea.include?("(Definition)") == true then
-            def1 = linea
-            def2 = def1.chomp(" (Definition)\n")
+            def1 = linea.chomp
+            def2 = def1.chomp("(Definition)").strip
           end
 
           if linea.include?("(answer)") == true then
-            ans = linea
-            ans2 = ans.chomp(" (answer)\n")
+            ans = linea.chomp
+            ans2 = ans.chomp("(answer)").strip
 
             unHash.has_key?(def2) == false ? unHash[def2] = ans2 : ""
           end
 
-        end #while
-        unHash
-        
-      end  #File.open
-
-    end #def
-
+        end 
+        unHash        
+      end  
+    end 
   end
 
 guardar = GuardarPreguntas.new
-#puts guardar.buildHash
+
 
 
 class Juego
@@ -55,7 +52,7 @@ class Juego
       
         puts @hash.keys[i]
         print "--> "
-        respuesta = gets.chomp
+        respuesta = gets.chomp.strip
 
         if respuesta == @hash.values[i] then
           puts "Correcto !!"
@@ -76,4 +73,3 @@ end
 
 juego = Juego.new(guardar)
 puts juego.jugar
-
